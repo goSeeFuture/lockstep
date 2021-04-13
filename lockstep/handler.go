@@ -89,8 +89,7 @@ func handleJoin(data []byte, a hotpot.IAgent) {
 
 	// 交给区域处理消息请求
 	a.Delegate(area.g)
-	waitResult, _ := area.g.Call("join", req.Account)
-	ret := waitResult()
+	ret, _ := area.g.Call("join", req.Account)
 	if _, ok := ret.Value.(*msg.System); ok {
 		a.WriteMsg(ret.Value)
 		return
